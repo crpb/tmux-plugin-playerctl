@@ -1,12 +1,9 @@
 #!/usr/bin/env bash
 
-#CWD=$(cd -P -- "$(dirname -- "$0")" && printf '%s\n' "$(pwd -P)/$(basename -- "$0")")
 # shellcheck disable=SC2164
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 # shellcheck disable=SC1091
 source "${CWD}/scripts/helpers.sh"
-# shellcheck disable=SC1091
-#source "${CWD}/scripts/playerctl_metadata.sh"
 
 playerctl_player="#($CWD/scripts/playerctl_player.sh)"
 playerctl_player_interpolation="\#{playerctl_player}"
@@ -32,31 +29,6 @@ playerctl_album_interpolation="\#{playerctl_album}"
 playerctl_album="#($CWD/scripts/playerctl_emoji_status.sh)"
 playerctl_album_interpolation="\#{playerctl_emoji_status}"
 
-#interpolation=(
-#	"\#playerctl_player}"
-#	"\#playerctl_short}"
-#	"\#playerctl_track}"
-#	"\#playerctl_full}"
-#	"\#playerctl_artist}"
-#	"\#playerctl_album}"
-#)
-#int_commands=(
-#	"#($CWD/scripts/playerctl_player.sh)"
-#	"#($CWD/scripts/playerctl_short.sh)"
-#	"#($CWD/scripts/playerctl_track.sh)"
-#	"#($CWD/scripts/playerctl_full.sh)"
-#	"#($CWD/scripts/playerctl_artist.sh)"
-#	"#($CWD/scripts/playerctl_album.sh)"
-#)
-
-#do_interpolation() {
-#  local all_interpolated="$1"
-#  for ((i=0; i < ${#int_commands[@]}; i++)); do
-#    all_interpolated=${all_interpolated//${interpolation[$i]}/${int_commands[$i]}}
-#  done
-#  echo "$all_interpolated"
-#}
-
 do_interpolation() {
   local string=$1
   local string=${string/$playerctl_player_interpolation/$playerctl_player}
@@ -76,7 +48,6 @@ update_tmux_option() {
   option_value="$(get_tmux_option "$option")"
   new_option_value="$(do_interpolation "$option_value")"
   set_tmux_option "$option" "$new_option_value"
-#  tmux set-option -gq "$option" "$new_option_value"
 }
 
 main() {
