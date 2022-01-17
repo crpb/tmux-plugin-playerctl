@@ -29,6 +29,9 @@ playerctl_album_interpolation="\#{playerctl_album}"
 playerctl_album="#($CWD/scripts/playerctl_emoji_status.sh)"
 playerctl_album_interpolation="\#{playerctl_emoji_status}"
 
+playerctl_volume="#($CWD/scripts/playerctl_volume.sh)"
+playerctl_volume_interpolation="\#{playerctl_volume}"
+
 do_interpolation() {
   local string=$1
   local string=${string/$playerctl_player_interpolation/$playerctl_player}
@@ -39,6 +42,7 @@ do_interpolation() {
   local string=${string/$playerctl_artist_interpolation/$playerctl_artist}
   local string=${string/$playerctl_album_interpolation/$playerctl_album}
   local string=${string/$playerctl_emoji_status_interpolation/$playerctl_album}
+  local string=${string/$playerctl_volume_interpolation/$playerctl_volume}
   echo "$string"
 }
 
