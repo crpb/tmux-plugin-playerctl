@@ -3,7 +3,7 @@
 main() {
   local full shortened info_char_count
   local MAX_CHARS=${PLAYERCTL_MAX_CHARS:-40}
-  full=$(playerctl metadata --format "{{ artist }} - {{ title }}")
+  full=$(playerctl --ignore-player=${IGNOREPLAYERCTL} metadata --format "{{ artist }} - {{ title }}")
   shortened=${full:0:$MAX_CHARS}
   info_char_count=${#full}
   local append=""

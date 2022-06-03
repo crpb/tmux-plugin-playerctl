@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
-  playerctl metadata --format "{{ artist }}"
+  playerctl --ignore-player=${IGNOREPLAYERCTL} metadata --format "{{ artist }}"
 }
 
 main

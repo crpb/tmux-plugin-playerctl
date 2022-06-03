@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 main() {
-  playerctl metadata --format "{{ volume * 100 }}"
+  playerctl --ignore-player=${IGNOREPLAYERCTL} metadata --format "{{ volume * 100 }}"
 }
 
 main
