@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+export $(tmux show-environment IGNOREPLAYERCTL)
 
 # shellcheck disable=SC2164
 CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
