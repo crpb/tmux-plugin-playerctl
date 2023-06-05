@@ -4,7 +4,7 @@
 #SPOTIFY: playerctl --ignore-player="$(printenv IGNOREPLAYERCTL)" -p spotify metadata --format "{{playerName}} {{emoji(status)}} - {{artist}} - {{album}} - {{title}}"
 
 main() {
-  playerctl --ignore-player="$(printenv IGNOREPLAYERCTL)" metadata --format "{{emoji(status)}}"#|sed 's%⏸ %||%g;s%▶<fe0f>%▸%g;'
+  playerctl --ignore-player="$(printenv IGNOREPLAYERCTL)" metadata --format "{{emoji(status)}}" |sed -e 's/\xef\xb8\x8f//g' -e 's/⏸/||/g'
 }
 
 main
