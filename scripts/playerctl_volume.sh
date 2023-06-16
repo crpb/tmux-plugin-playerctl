@@ -9,7 +9,7 @@ main() {
   else
     gvol="$(pamixer --get-volume)%"
   fi
-  printf "%s / GV: %s" "$pvol" "$gvol"
+  printf "%s GV: %s" "$pvol" "$gvol"
 }
 
 main
