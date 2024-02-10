@@ -2,7 +2,8 @@
 export $(tmux show-environment IGNOREPLAYERCTL)
 
 # shellcheck disable=SC2164
-CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CWD="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
 # shellcheck disable=SC1091
 source "${CWD}/scripts/helpers.sh"
 
@@ -48,11 +49,12 @@ do_interpolation() {
 }
 
 update_tmux_option() {
-  local option option_value new_option_value
-  option="$1"
+  local option="$1"
+  local option_value, new_option_value
   option_value="$(get_tmux_option "$option")"
   new_option_value="$(do_interpolation "$option_value")"
-  set_tmux_option "$option" "$new_option_value"
+
+  tmux set-option -gq "$option" "$new_option_value"
 }
 
 main() {
